@@ -9,4 +9,3 @@ module "networking" {
 
   subnet = var.vpc_subnet
 }
-

@@ -17,6 +17,6 @@ vpc_subnet = {
   "private_subnet" = {
     subnet_cidr_block        = "10.0.1.0/24"
     subnet_availability_zone = "ap-south-1b"
-    subnet_type              = "private"    
+    subnet_type              = "private"
   }
 }

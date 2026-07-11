@@ -14,12 +14,8 @@ variable "tags" {
 variable "subnet" {
   description = "Subnet object"
   type = map(object({
-    subnet_cidr_block = string
+    subnet_cidr_block        = string
     subnet_availability_zone = string
-    subnet_type = string
+    subnet_type              = string
   }))
-}
-
-variable "route_table" {
-  
 }
