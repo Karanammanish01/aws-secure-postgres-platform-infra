@@ -54,3 +54,14 @@ variable "ingress_rule" {
     ip_protocol               = string
   }))
 }
+
+variable "egress_rule" {
+  type = map(object({
+    security_group            = string
+    cidr_ipv4                 = optional(string)
+    referenced_security_group = optional(string)
+    from_port                 = number
+    to_port                   = number
+    ip_protocol               = string
+  }))
+}

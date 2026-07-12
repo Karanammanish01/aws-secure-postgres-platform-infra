@@ -23,4 +23,6 @@ module "secuirty" {
   identifier = local.name_prefix
 
   ingress_rule = var.ingress_rule
+
+  egress_rule = var.egress_rule
 }
