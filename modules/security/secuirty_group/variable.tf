@@ -13,8 +13,19 @@ variable "security_group" {
   }))
 }
 
+variable "ingress_rule" {
+  type = map(object({
+    security_group            = string
+    cidr_ipv4                 = optional(string)
+    referenced_security_group = optional(string)
+    from_port                 = number
+    to_port                   = number
+    ip_protocol               = string
+  }))
+}
+
 variable "tags" {
   description = "Tags for the resource"
-  type        = map(object)
+  type        = map(string)
   default     = {}
 }
