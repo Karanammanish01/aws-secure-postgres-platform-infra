@@ -3,7 +3,7 @@ variable "environment" {
   validation {
 
     condition = contains(
-        ["dev","uat","prod"], var.environment
+      ["dev", "uat", "prod"], var.environment
     )
 
     error_message = "Environment must be dev,uat and prod"
@@ -27,10 +27,12 @@ variable "vpc_cidr" {
   }
 }
 
-variable "public_subnet_cidr" {
-  type = string
-}
 
-variable "private_subnet_cidr" {
-  type = string
+variable "vpc_subnet" {
+  description = "Subnet object"
+  type = map(object({
+    subnet_cidr_block        = string
+    subnet_availability_zone = string
+    subnet_type              = string
+  }))
 }
