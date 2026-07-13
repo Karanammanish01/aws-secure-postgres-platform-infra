@@ -1,40 +1,9 @@
-variable "environment" {
-  type = string
-  validation {
-
-    condition = contains(
-      ["dev", "uat", "prod"], var.environment
-    )
-
-    error_message = "Environment must be dev,uat and prod"
-  }
-}
-
-variable "project_name" {
+variable "identifier" {
   type = string
 }
 
-variable "aws_region" {
+variable "vpc_id" {
   type = string
-}
-
-variable "vpc_cidr" {
-  type = string
-
-  validation {
-    condition     = can(cidrhost(var.vpc_cidr, 0))
-    error_message = "Invalid CIDR block."
-  }
-}
-
-
-variable "vpc_subnet" {
-  description = "Subnet object"
-  type = map(object({
-    subnet_cidr_block        = string
-    subnet_availability_zone = string
-    subnet_type              = string
-  }))
 }
 
 variable "security_group" {
@@ -64,4 +33,10 @@ variable "egress_rule" {
     to_port                   = number
     ip_protocol               = string
   }))
+}
+
+variable "tags" {
+  description = "Tags for the resource"
+  type        = map(string)
+  default     = {}
 }
