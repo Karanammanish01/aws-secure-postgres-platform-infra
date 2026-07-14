@@ -27,6 +27,14 @@ module "secuirty" {
   egress_rule = var.egress_rule
 }
 
+# IAM ROLE
+
+module "iam_role_policy" {
+  source = "../../modules/security/iam"
+
+  identifier = local.name_prefix
+}
+
 # Module for CMK 
 
 module "kms_security" {
@@ -34,4 +42,3 @@ module "kms_security" {
 
   identifier   = local.name_prefix
   self_kms_key = var.self_kms_key
-}
