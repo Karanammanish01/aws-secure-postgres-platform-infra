@@ -40,7 +40,60 @@ module "iam_role_policy" {
 module "kms_security" {
   source = "../../modules/platform/kms"
 
-  self_kms_key = var.self_kms_key
-
   identifier = local.name_prefix
+  tags       = local.common_tags
+
+  self_kms_key = {
+
+    for key, value in var.self_kms_key :
+
+    key => merge(
+      value,
+      {
+        policy_statements = [
+
+          {
+            sid    = "AllowEC2Role"
+            effect = "Allow"
+
+            principal_type = "AWS"
+
+            principal_identifiers = [
+              module.iam_role_policy.instance_profile_arn
+            ]
+
+            actions = [
+              "kms:Decrypt",
+              "kms:Encrypt",
+              "kms:GenerateDataKey",
+              "kms:DescribeKey"
+            ]
+
+            resources = ["*"]
+          },
+
+          {
+            sid    = "AllowSecretsManager"
+            effect = "Allow"
+
+            principal_type = "Service"
+
+            principal_identifiers = [
+              "secretsmanager.amazonaws.com"
+            ]
+
+            actions = [
+              "kms:Encrypt",
+              "kms:Decrypt",
+              "kms:GenerateDataKey",
+              "kms:DescribeKey"
+            ]
+
+            resources = ["*"]
+          }
+
+        ]
+      }
+    )
+  }
 }

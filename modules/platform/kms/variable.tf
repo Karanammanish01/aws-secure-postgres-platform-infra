@@ -9,12 +9,6 @@ variable "tags" {
   default     = {}
 }
 
-variable "prevent_destroy" {
-  description = "Module-wide lifecycle guard applied to every key. Set to false if you need to allow destroys (e.g. in throwaway/test environments)."
-  type        = bool
-  default     = true
-}
-
 variable "self_kms_key" {
   description = <<-EOT
     Map of KMS keys to create. Map key is used to build the key's name/alias

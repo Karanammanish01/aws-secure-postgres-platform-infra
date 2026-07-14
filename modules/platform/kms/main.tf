@@ -92,7 +92,7 @@ resource "aws_kms_key" "this" {
   lifecycle {
     # Module-wide toggle rather than per-key, since lifecycle arguments
     # must be static and can't reference each.value.
-    prevent_destroy = var.prevent_destroy
+    prevent_destroy = false
   }
 }
 
