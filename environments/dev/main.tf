@@ -26,3 +26,11 @@ module "secuirty" {
 
   egress_rule = var.egress_rule
 }
+
+# IAM ROLE
+
+module "iam_role_policy" {
+  source = "../../modules/security/iam"
+
+  identifier = local.name_prefix
+}
