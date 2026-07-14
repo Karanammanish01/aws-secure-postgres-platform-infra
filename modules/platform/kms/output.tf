@@ -1,6 +1,6 @@
 output "alias_arn" {
-  value ={
+  value = {
     for key, alias in aws_kms_alias.this :
-            key => alias.arn
+    key => alias.arn
   }
 }

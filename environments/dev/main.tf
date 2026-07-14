@@ -42,3 +42,8 @@ module "kms_security" {
 
   identifier   = local.name_prefix
   self_kms_key = var.self_kms_key
+}
+
+# Identifying the root Account id 
+data "aws_caller_identity" "current" {}
+
