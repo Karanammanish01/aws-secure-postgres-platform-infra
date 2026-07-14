@@ -40,10 +40,7 @@ module "iam_role_policy" {
 module "kms_security" {
   source = "../../modules/platform/kms"
 
-  identifier   = local.name_prefix
   self_kms_key = var.self_kms_key
+
+  identifier = local.name_prefix
 }
-
-# Identifying the root Account id 
-data "aws_caller_identity" "current" {}
-
