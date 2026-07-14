@@ -26,3 +26,12 @@ module "secuirty" {
 
   egress_rule = var.egress_rule
 }
+
+# Module for CMK 
+
+module "kms_security" {
+  source = "../../modules/platform/kms"
+
+  identifier   = local.name_prefix
+  self_kms_key = var.self_kms_key
+}
