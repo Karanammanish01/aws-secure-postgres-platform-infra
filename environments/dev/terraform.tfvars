@@ -60,3 +60,15 @@ egress_rule = {
     ip_protocol    = "-1"
   }
 }
+
+self_kms_key = {
+
+  platform = {
+
+    description             = "CMK for Secure Platform"
+    enable_key_rotation     = true
+    deletion_window_in_days = 7
+
+  }
+
+}
